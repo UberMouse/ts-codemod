@@ -67,21 +67,21 @@ export default class extends Transformation<{
    * Creates a new import declaration
    */
   private _createImportDeclaration(module: string, keep: string[]): ts.Node {
-    const importClause = ts.createImportClause(
+    const importClause = ts.factory.createImportClause(
+      false,
       undefined,
-      ts.createNamedImports(
+      ts.factory.createNamedImports(
         keep.map(_ =>
-          ts.createImportSpecifier(undefined, ts.createIdentifier(_))
+          ts.factory.createImportSpecifier(false, undefined, ts.factory.createIdentifier(_))
         )
       )
     )
     return keep.length > 0
-      ? ts.createImportDeclaration(
-          [],
+      ? ts.factory.createImportDeclaration(
           [],
           importClause,
-          ts.createLiteral(module)
+          ts.factory.createStringLiteral(module)
         )
-      : ts.createIdentifier('')
+      : ts.factory.createIdentifier('')
   }
 }

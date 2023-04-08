@@ -5,11 +5,11 @@ export default class extends Transformation<{module: string}> {
   public visit(node: ts.Node): ts.VisitResult<ts.Node> {
     return ts.isImportDeclaration(node) &&
       node.moduleSpecifier.getText().match(this.params.module)
-      ? ts.createImportDeclaration(
-          node.decorators,
+      ? ts.factory.createImportDeclaration(
           node.modifiers,
           node.importClause,
-          ts.createLiteral(this.params.module)
+          ts.factory.createStringLiteral(this.params.module),
+          node.assertClause
         )
       : node
   }

@@ -16,12 +16,12 @@ export default class ArrayToRestParams extends Transformation<{
       ts.isStringLiteral(node.moduleSpecifier) &&
       this.params.modules.hasOwnProperty(node.moduleSpecifier.text)
     ) {
-      return ts.updateImportDeclaration(
+      return ts.factory.updateImportDeclaration(
         node,
-        node.decorators,
         node.modifiers,
         node.importClause,
-        ts.createStringLiteral(this.params.modules[node.moduleSpecifier.text])
+        ts.factory.createStringLiteral(this.params.modules[node.moduleSpecifier.text]),
+        node.assertClause
       )
     } else {
       return node

@@ -8,8 +8,8 @@ export default class ReplaceNode extends Transformation<{
   matchWith: string
   replaceWith: string
 }> {
-  private matchWith: ts.Node = ts.createEmptyStatement()
-  private replaceWith: ts.Node = ts.createEmptyStatement()
+  private matchWith: ts.Node = ts.factory.createEmptyStatement()
+  private replaceWith: ts.Node = ts.factory.createEmptyStatement()
 
   public before(): void {
     const {matchWith, replaceWith} = this.params

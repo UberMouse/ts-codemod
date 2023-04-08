@@ -16,7 +16,7 @@ export default class ConvertToCall extends Transformation<{
       // special check for import specifiers
       (node.parent && !ts.isImportSpecifier(node.parent))
     ) {
-      return ts.createCall(ts.createIdentifier(this.params.name), undefined, [])
+      return ts.factory.createCallExpression(ts.factory.createIdentifier(this.params.name), undefined, [])
     }
 
     return node

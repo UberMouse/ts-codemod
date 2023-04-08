@@ -44,8 +44,8 @@ export function transform<Params>(
     })
   ])
   const printer = ts.createPrinter({newLine: ts.NewLineKind.LineFeed})
-  const newContent = printer.printBundle(
-    ts.createBundle(transformed.transformed)
+  const newContent = printer.printFile(
+    transformed.transformed[0]
   )
 
   const oldContent = ts.createPrinter().printFile(sourceFile)

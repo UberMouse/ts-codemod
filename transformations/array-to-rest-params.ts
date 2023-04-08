@@ -16,8 +16,8 @@ export default class ArrayToRestParams extends Transformation<{
       const args = node.arguments[0] as ts.ArrayLiteralExpression
 
       // create a new function call
-      return ts.createCall(
-        ts.createIdentifier(this.params.functionName),
+      return ts.factory.createCallExpression(
+        ts.factory.createIdentifier(this.params.functionName),
         undefined,
         args.elements
       )
